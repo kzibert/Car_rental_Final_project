@@ -3,11 +3,12 @@
 <html>
 <head>
 	<title>User management</title>
+
 </head>
 <body>
 
 <c:forEach items="${users}" var="user">
-<form action="user_status_update" method="get">
+<form action="user_status_update" method="post">
 <input type="hidden" name="id" value="${user.id}">
 ${user.name} ${user.surname}, ${user.email}
 <select name="status" default value="${user.status}">
@@ -23,7 +24,10 @@ ${user.name} ${user.surname}, ${user.email}
 
 <a href="logged_admin.jsp">Back</a>
 
-<br> <a href="index.html">Log out</a>
+<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
+
 
 </body>
 </html>

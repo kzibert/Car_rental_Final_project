@@ -1,7 +1,8 @@
 package com.zibert.DAO.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import java.util.Objects;
 
 public class Order implements Serializable {
 
@@ -15,7 +16,6 @@ public class Order implements Serializable {
     private String cancelComments;
     private String status;
     private Car car;
-    private Brand brand;
     private OrderReceipt orderReceipt;
     private DamageReceipt damageReceipt;
 
@@ -32,7 +32,6 @@ public class Order implements Serializable {
                 ", cancelComments='" + cancelComments + '\'' +
                 ", status='" + status + '\'' +
                 ", car=" + car +
-                ", brand=" + brand +
                 ", orderReceipt=" + orderReceipt +
                 ", damageReceipt=" + damageReceipt +
                 '}';
@@ -52,14 +51,6 @@ public class Order implements Serializable {
 
     public void setOrderReceipt(OrderReceipt orderReceipt) {
         this.orderReceipt = orderReceipt;
-    }
-
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public void setBrand(Brand brand) {
-        this.brand = brand;
     }
 
     public Car getCar() {
@@ -140,5 +131,18 @@ public class Order implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return id == order.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

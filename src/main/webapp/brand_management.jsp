@@ -1,5 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ include file="directives.jspf" %>
 
 <html>
 <head>
@@ -7,17 +6,19 @@
 </head>
 <body>
 
-<form action="brand_add" method="get">
-	<input name="brand" placeholder="insert brand" pattern="[A-Za-z]{1,}">
+<form action="brand_add" method="post">
+	<input name="brand" placeholder="insert brand" pattern="[A-Za-z]{2,}" required>
 	<input type="submit" value="Add brand">
 </form> 
 <br>
 <hr>
 
 <c:forEach items="${brands}" var="brand">
+	<form action="deleteBrand" method="post">
 	${brand.name}
-	<a href="deleteBrand?id=${brand.id}">delete</a>
-	<br>
+	<input type="hidden" name="id" value="${brand.id}">
+	<input type="submit" value="delete">
+	</form>
 </c:forEach>
 
 <br>
@@ -25,7 +26,9 @@
 
 <a href="logged_admin.jsp">Back</a>
 
-<br> <a href="index.html">Log out</a>
+<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>

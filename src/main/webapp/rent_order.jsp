@@ -1,6 +1,5 @@
 <%@ include file="directives.jspf" %>
 <%@ page session="true" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
@@ -38,7 +37,9 @@ Please, check if you need a driver: <br>
 
 <a href="user_main.jsp">Main</a> <br>
 <a href="choose_car">Back</a> <br>
-<a href="logout">Log out</a>
+<form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 
 

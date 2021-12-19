@@ -5,6 +5,10 @@ import com.zibert.DAO.entity.User;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 import java.io.IOException;
 
+/**
+ * Custom tag printing the current user's role
+ */
+
 public class RoleTag extends SimpleTagSupport {
 
     User user;

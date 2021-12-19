@@ -9,7 +9,7 @@
 
 Please, kindly login in order to proceed with car rental!
 
-<br> <a href="login_page"><h4>Log in here</h4></a>
+<br> <a href="auth"><h4>Log in here</h4></a>
 
 </body>
 </html>

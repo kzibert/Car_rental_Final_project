@@ -6,7 +6,9 @@
 <body>
 	User ${user.name} ${user.surname} is blocked. Please, contact admin for more information.
 
-	<br> <a href="index.html">Log out</a>
+	<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>

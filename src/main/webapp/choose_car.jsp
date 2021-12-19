@@ -7,7 +7,7 @@
 <body>
 <h2>${user.name}, we are glad to see you on Car Rental! </h2>
 	 <hr> <br>
-	 <form action="choose_car" method="get">
+	 <form action="choose_car" method="get" class="inLine">
 	 <label for="start">Rent start date:</label> <br>
         <input required type="date" id="start" name="rent-start"
                min="${today}" max="2025-12-31" value="${rentBeg == null ? '' : rentBeg}">
@@ -21,10 +21,10 @@
 
 <c:if test="${dateInputError != 'Rent end date should be bigger than rent start date'}">
 
-<a href="choose_car">Clear dates</a>
+<a href="choose_car"><button class="inLine">Clear dates</button></a>
 <hr>
 
-<form action="choose_car" method="get">
+<form action="choose_car" method="get" class="inLine">
 <input type="hidden" name="sort" value="brand"/>
 <c:if test="${rentBeg != null}">
 <input type="hidden" name="rent-start" value="${rentBeg}"/>
@@ -32,14 +32,14 @@
 </c:if>
 <select name="brand">
         <option selected disabled>--//--</option>
-    <c:forEach items="${brands}" var="brand">
-        <option value="${brand.id}">${brand.name}</option>
+    <c:forEach items="${brands}" var="brands">
+        <option value="${brands.id}" ${brand == brands.id ? 'selected' : ''}>${brands.name}</option>
         </c:forEach>
     </select>
 <input type="submit" value="Filter by brand" />
 </form>
 
-<form action="choose_car" method="get">
+<form action="choose_car" method="get" class="inLine">
 <input type="hidden" name="sort" value="class"/>
 <c:if test="${rentBeg != null}">
 <input type="hidden" name="rent-start" value="${rentBeg}"/>
@@ -48,15 +48,15 @@
 <select name="quality_class">
         <option selected disabled>--//--</option>
     <c:forEach items="${q_cars}" var="q_car">
-        <option value="${q_car}">${q_car}</option>
+        <option value="${q_car}" ${quality_class == q_car ? 'selected' : ''}>${q_car}</option>
         </c:forEach>
     </select>
 <input type="submit" value="Filter by quality class" />
 </form>
 
-<a href="choose_car?sort=price${rentBeg == null ? '' : '&rent-start='.concat(rentBeg).concat('&rent-end=').concat(rentFin)}">Sort by price</a>
- <a href="choose_car?sort=model${rentBeg == null ? '' : '&rent-start='.concat(rentBeg).concat('&rent-end=').concat(rentFin)}">Sort by model name</a>
- <a href="choose_car?${rentBeg == null ? '' : '&rent-start='.concat(rentBeg).concat('&rent-end=').concat(rentFin)}">Undo filters</a>
+<a href="choose_car?sort=price${rentBeg == null ? '' : '&rent-start='.concat(rentBeg).concat('&rent-end=').concat(rentFin)}" class="inLine"><button>Sort by price</button></a>
+ <a href="choose_car?sort=model${rentBeg == null ? '' : '&rent-start='.concat(rentBeg).concat('&rent-end=').concat(rentFin)}" class="inLine"><button>Sort by model name</button></a>
+ <a href="choose_car?${rentBeg == null ? '' : '&rent-start='.concat(rentBeg).concat('&rent-end=').concat(rentFin)}" class="inLine"><button>Undo filters</button></a>
 
 <br>
 <hr>
@@ -129,7 +129,7 @@
 	Model: ${car.model} <br>
 	Quality class: ${car.qualityClass} <br>
 	Price: ${car.price} UAH/day<br>
-	<a href="rent?id=${car.id}${rentBeg == null ? '' : '&rent-start='.concat(rentBeg)}${rentFin == null ? '' : '&rent-end='.concat(rentFin)}"><h3>Order now</h3></a>
+	<a href="rent?id=${car.id}${rentBeg == null ? '' : '&rent-start='.concat(rentBeg)}${rentFin == null ? '' : '&rent-end='.concat(rentFin)}"><button>Order now</button></a>
 	<hr>
 </c:forEach>
 </c:if>
@@ -139,7 +139,9 @@
 <hr>
 
 <a href="user_main.jsp">Main</a> <br>
-<br> <a href="logout">Log out</a>
+<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>

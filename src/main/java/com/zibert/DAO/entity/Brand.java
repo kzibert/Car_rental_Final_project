@@ -1,7 +1,7 @@
 package com.zibert.DAO.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.Objects;
 
 public class Brand implements Serializable {
 
@@ -30,5 +30,18 @@ public class Brand implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Brand brand = (Brand) o;
+        return id == brand.id && Objects.equals(name, brand.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }

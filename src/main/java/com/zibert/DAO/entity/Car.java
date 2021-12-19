@@ -1,8 +1,9 @@
 package com.zibert.DAO.entity;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Car {
+public class Car implements Serializable {
 
     private int id;
     private int brandId;

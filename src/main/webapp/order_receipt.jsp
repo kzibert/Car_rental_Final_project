@@ -7,7 +7,7 @@
 <body>
 
 <h2> Order receipt </h2>
-    Car: ${order.brand.name} ${order.car.model} <br>
+    Car: ${order.car.brand.name} ${order.car.model} <br>
     Price: ${order.orderReceipt.cost} UAH <br>
     Period: ${days} days <br> <hr>
 <form action="order_payment" method="post">
@@ -26,7 +26,9 @@ Enter your card number: <br>
 
 <a href="${back}">Back</a> <br>
 
-<a href="index.html">Log out</a>
+<form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>

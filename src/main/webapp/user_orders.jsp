@@ -1,5 +1,6 @@
 <%@ include file="directives.jspf" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://com.zibert" prefix="mylib" %>
 
 <html>
 <head>
@@ -77,7 +78,6 @@
             <fmt:message key="label.order_cancelled"/>
     </c:set>
 
-
 	<c:forEach items="${orders}" var="order">
     	<fmt:message key="label.order_number"/>: ${order.id} <br>
     	<fmt:message key="label.order_status"/>:
@@ -85,9 +85,9 @@
     	    ${order.status == 'Order approved' ? Order_approved : ''}
     	    ${order.status == 'Order closed' ? Order_closed : ''}
     	    ${order.status == 'Order cancelled' ? Order_cancelled : ''} <br>
-    	<fmt:message key="label.car"/>: ${order.brand.name} ${order.car.model} <br>
-    	<fmt:message key="label.rent_start_date"/>: ${order.rentStart} <br>
-    	<fmt:message key="label.rent_end_date"/>: ${order.rentEnd} <br>
+    	<fmt:message key="label.car"/>: ${order.car.brand.name} ${order.car.model} <br>
+    	<fmt:message key="label.rent_start_date"/>: <mylib:date date="${order.rentStart}" /> <br>
+    	<fmt:message key="label.rent_end_date"/>: <mylib:date date="${order.rentEnd}" /> <br>
     	<fmt:message key="label.rent_cost"/>: ${order.orderReceipt.cost} <fmt:message key="label.uah"/> <br>
     	<fmt:message key="label.payment_status"/>: ${order.orderReceipt.paymentStatus == 1 ? Paid : Not_paid} <br>
 
@@ -101,7 +101,7 @@
 
     <c:if test="${order.orderReceipt.paymentStatus == 0 && order.status != 'Order closed' && order.status != 'Order cancelled'}">
     <br>
-        <form action="show_order_receipt" method="post">
+        <form action="show_order_receipt" method="get">
         <input type="hidden" name="order_id" value="${order.id}"/>
         <input type="submit" value="<fmt:message key='form.pay_order_button'/>" />
         </form>
@@ -109,7 +109,7 @@
 
     <c:if test="${order.damageReceipt.damageCost > 0 && order.damageReceipt.damagePaymentStatus != 1}">
     <br>
-       	<form action="show_damage_receipt" method="post">
+       	<form action="show_damage_receipt" method="get">
         <input type="hidden" name="order_id" value="${order.id}"/>
         <input type="submit" value="<fmt:message key='form.pay_damage_button'/>" />
         </form>
@@ -122,8 +122,10 @@
 
 	<br>
     <a href="user_main.jsp"><fmt:message key="link.back"/></a>
-    <br> <br>
-    <a href="logout"><fmt:message key="link.logout"/></a>
+    <br>
+        <form action="logout" method="post" style="position: fixed; top: 3; right: 100">
+        <input type="submit" value="<fmt:message key="link.logout"/>">
+        </form>
 
 
 <hr>

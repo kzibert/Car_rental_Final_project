@@ -1,9 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+
 <html>
 <head>
 	<title>Sign in</title>
 </head>
 <body>
+
+<h3> ${registration == 'success' ? 'The user has been registered successfully!' : ''} </h3>
+
 <h3>Log in here:</h3>
 	<form action="auth" method="post">
 	<input name="email" placeholder="E-mail" pattern="^[a-zA-Z0-9\._%+-]+@[a-zA-Z0-9\.-]+\.[a-zA-Z]{2,6}$" required> <br>

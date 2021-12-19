@@ -1,11 +1,13 @@
 package com.zibert.service;
 
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
+
+/**
+ * Class with method for counting days between two dates
+ */
 
 public class DatesManagement {
 
@@ -18,15 +20,9 @@ public class DatesManagement {
     }
 
     public int countDaysBetweenTwoDates(Date rentBeg, Date rentFin) {
-        LocalDate date1 = rentBeg.toLocalDate();
-        LocalDate date2 = rentFin.toLocalDate();
+        LocalDate date1 = new java.sql.Date(rentBeg.getTime()).toLocalDate();
+        LocalDate date2 = new java.sql.Date(rentFin.getTime()).toLocalDate();
         Period daysBetween = Period.between(date1, date2);
         return daysBetween.getDays() + 1;
-    }
-
-    public Date parseDate(String date) throws ParseException {
-        java.util.Date date1 = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        Date result = new java.sql.Date(date1.getTime());
-        return result;
     }
 }

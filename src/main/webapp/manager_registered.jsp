@@ -15,7 +15,9 @@ Please, choose on of the options: <br>
 <a href="register_manager.jsp">Add more managers</a> <br> <br>
 <a href="logged_admin.jsp">Back</a>
 
-<br> <a href="index.html">Log out</a>
+<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>

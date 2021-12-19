@@ -7,7 +7,7 @@
 <body>
 
 <h2> Damage receipt </h2>
-    Car: ${order.brand.name} ${order.car.model} <br>
+    Car: ${order.car.brand.name} ${order.car.model} <br>
     Damage cost: ${order.damageReceipt.damageCost} UAH <br>
     <hr>
 <form action="damage_payment" method="post">
@@ -24,9 +24,11 @@ Enter your card number: <br>
 <hr>
 
 
-<a href="choose_car">Back</a> <br>
+<a href="user_orders">Back</a> <br>
 
-<a href="index.html">Log out</a>
+<form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>

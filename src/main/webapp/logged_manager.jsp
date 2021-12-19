@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="directives.jspf" %>
 <%@ taglib uri="http://com.zibert" prefix="mylib" %>
 
 <html>
@@ -16,6 +16,8 @@
 
 	<a href="cancelled_orders">Cancelled orders</a> <br>
 
-	<br> <a href="logout">Log out</a>
+	<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 </body>
 </html>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ include file="directives.jspf" %>
 <%@ taglib uri="http://com.zibert" prefix="mylib" %>
 
 <html>
@@ -14,7 +14,9 @@
     <a href="user_manage">User management</a> <br> <br>
     <a href="register_manager.jsp">Register new manager</a> <br> <br>
 
-    <br> <a href="index.html">Log out</a>
+    <br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 
 </body>

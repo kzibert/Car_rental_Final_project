@@ -1,7 +1,7 @@
 package com.zibert.DAO.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 public class OrderReceipt implements Serializable {
 

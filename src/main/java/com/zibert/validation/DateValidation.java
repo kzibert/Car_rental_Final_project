@@ -8,6 +8,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * DateValidation class
+ * Has method for checking if the second date is bigger than the first one
+ */
+
 public class DateValidation {
 
     private static final Logger log = LogManager.getLogger(DateValidation.class);

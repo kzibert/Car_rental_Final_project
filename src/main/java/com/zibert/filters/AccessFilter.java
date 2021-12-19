@@ -19,23 +19,22 @@ public class AccessFilter implements Filter {
     List<String> adminUrls = new ArrayList<>();
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
 
         //pages for not logged users
         loginUrls.add("/auth");
         loginUrls.add("/auth.jsp");
-        loginUrls.add("/login_page");
         loginUrls.add("/registration.jsp");
         loginUrls.add("/register");
         loginUrls.add("/index.html");
         loginUrls.add("/logout");
         loginUrls.add("/no_user_found.jsp");
+        loginUrls.add("/blocked_user.jsp");
 
         //user pages
         userUrls.add("/choose_car");
         userUrls.add("/damage_payment");
         userUrls.add("/order_payment");
-        userUrls.add("/rent_order_redirect");
         userUrls.add("/rent_order");
         userUrls.add("/rent");
         userUrls.add("/show_damage_receipt");
@@ -100,9 +99,9 @@ public class AccessFilter implements Filter {
             role = (int) req.getSession().getAttribute("role");
         }
 
-        String address = servPath;
+        String address = null;
 
-        if (user == null && !(loginUrls.contains(servPath))) {
+        if ((user == null || user.getStatus() == 1) && !(loginUrls.contains(servPath))) {
             address = "no_access";
         }
         if (role == 1) {
@@ -120,6 +119,10 @@ public class AccessFilter implements Filter {
                 address = "no_access";
             }
         }
-        req.getRequestDispatcher(address).forward(req, resp);
+        if (address == null || servPath.startsWith("/js") || servPath.startsWith("/css")) {
+            filterChain.doFilter(req, resp);
+        } else {
+            req.getRequestDispatcher(address).forward(req, resp);
+        }
     }
 }

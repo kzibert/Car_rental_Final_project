@@ -13,7 +13,9 @@
 
 <a href="user_main.jsp">Main page</a> <br> <br>
 
-<a href="logout">Log out</a>
+<form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 
 

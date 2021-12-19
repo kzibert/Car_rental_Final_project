@@ -1,0 +1,9 @@
+.logout {
+    position: fixed;
+    top: 3;
+    right: 100;
+}
+
+.inLine {
+    display: inline;
+}

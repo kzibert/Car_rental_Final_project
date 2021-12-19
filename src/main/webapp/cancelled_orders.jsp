@@ -1,4 +1,5 @@
 <%@ include file="directives.jspf" %>
+<%@ taglib uri="http://com.zibert" prefix="mylib" %>
 
 <html>
 <head>
@@ -58,9 +59,9 @@
 
     	<c:forEach items="${cancelledOrders}" var="order">
             Order number: ${order.id} <br>
-        	Car: ${order.brand.name} ${order.car.model}, (ID: ${order.car.id}) <br>
-        	Rent start date: ${order.rentStart} <br>
-        	Rent end date: ${order.rentEnd} <br> <br>
+        	Car: ${order.car.brand.name} ${order.car.model}, (ID: ${order.car.id}) <br>
+        	Rent start date: <mylib:date date="${order.rentEnd}" /> <br>
+        	Rent end date: <mylib:date date="${order.rentEnd}" /> <br> <br>
         	Reason of cancel: ${order.cancelComments} <br>
         	<hr>
     	</c:forEach>
@@ -70,6 +71,8 @@
         <br> <br>
         <a href="logged_manager.jsp">Back</a>
         <br> <br>
-        <a href="logout">Log out</a>
+        <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 </body>
 </html>

@@ -16,7 +16,7 @@ Choose brand: <br>
         </c:forEach>
     </select> <br>
 Insert model: <br>
-    <input name="model" placeholder="Model" pattern="[A-Za-z0-9]{1,}" required> <br>
+    <input name="model" placeholder="Model" pattern="[A-Za-z0-9]{1,100}" required> <br>
     Choose quality class: <br>
 <select name="quality_class" placeholder="Quality class" required>
 <option selected disabled value="">--//--</option>
@@ -27,7 +27,7 @@ Insert model: <br>
         <option value="E">E</option>
     </select> <br>
     Insert price: <br>
-    <input name="price" placeholder="Price" pattern="[0-9]{1,}" required> <br>
+    <input name="price" placeholder="Price" pattern="[0-9]{1,9}" required> <br>
 Choose car status: <br>
     <select name="status" required>
             <option value="Available">Available</option>
@@ -93,9 +93,18 @@ Choose car status: <br>
 	Quality class: ${car.qualityClass} <br>
 	Price: ${car.price} UAH<br>
 	Car status: ${car.carStatus} <br>
-	<a href="car_edit?id=${car.id}">edit</a>
-	<a href="car_delete?id=${car.id}">delete</a>
-	<br>
+
+	<form action="car_edit" method="get" class="inLine">
+	<input type="hidden" name="id" value="${car.id}">
+	<input type="submit" value="Edit">
+	</form>
+
+    </form>
+	<form action="car_delete" method="post" class="inLine">
+	<input type="hidden" name="id" value="${car.id}">
+	<input type="submit" value="Delete">
+	</form>
+
 	<hr>
 </c:forEach>
 
@@ -104,7 +113,9 @@ Choose car status: <br>
 
 <a href="logged_admin.jsp">Back</a>
 
-<br> <a href="index.html">Log out</a>
+<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>

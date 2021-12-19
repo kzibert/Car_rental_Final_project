@@ -19,4 +19,17 @@
   </tag>
 
 
+    <tag>
+        <name>date</name>
+        <tag-class>com.zibert.tags.DateFormatTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>date</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+
+
 </taglib>

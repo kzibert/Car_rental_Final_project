@@ -7,7 +7,7 @@
 <body>
 
 <h2> Car edit </h2>
-<form action="car_update" method="get">
+<form action="car_update" method="post">
     <select name="brand" required>
     <c:forEach items="${brands}" var="brand">
         <option value="${brand.id}" ${brand.id == car.brand.id ? 'selected' : ''} >${brand.name}</option>
@@ -17,7 +17,7 @@
         </c:forEach>
     </select> <br>
 
-    <input name="model" value="${car.model}" pattern="[A-Za-z0-9]{1,}" required> <br>
+    <input name="model" value="${car.model}" pattern="[A-Za-z0-9]{1,100}" required> <br>
     <select name="quality_class" placeholder="Quality class" required>
             <option ${car.qualityClass == 'A' ? 'selected' : ''} value="A">A</option>
             <option ${car.qualityClass == 'B' ? 'selected' : ''} value="B">B</option>
@@ -25,7 +25,7 @@
             <option ${car.qualityClass == 'D' ? 'selected' : ''} value="D">D</option>
             <option ${car.qualityClass == 'E' ? 'selected' : ''} value="E">E</option>
         </select> <br>
-    <input name="price" value="${car.price}" pattern="[0-9]{1,}" required> <br>
+    <input name="price" value="${car.price}" pattern="[0-9]{1,9}" required> <br>
 
     <select name="status" required>
             <option ${car.carStatus == 'Available' ? 'selected' : ''} value="Available">Available</option>
@@ -41,7 +41,9 @@
 
 <a href="car_manage">Back</a>
 
-<br> <a href="index.html">Log out</a>
+<br> <form action="logout" method="post" class="logout">
+    <input type="submit" value="Log out">
+    </form>
 
 </body>
 </html>
